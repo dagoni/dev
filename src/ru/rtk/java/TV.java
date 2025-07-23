@@ -1,5 +1,4 @@
 package src.ru.rtk.java;
-import java.util.Arrays;
 import java.util.Random;
 
 
@@ -32,51 +31,56 @@ public class TV {
 
     // Основные характеристики
     private String brand;            // Бренд (Samsung, LG, Sony и т.д.)
+    private String model;           // Модель телевизора
     private double diagonal;        // Диагональ экрана в дюймах
     private String resolution;      // Разрешение ("Full HD", "4K", "8K")
     private String matrixType;      // Тип матрицы ("OLED", "QLED", "IPS", "VA")
     private int refreshRate;        // Частота обновления (Гц)
-
     // Дополнительные характеристики
     private String smartSystem;     // Smart TV система ("Android TV", "webOS", "Tizen")
-    private String model;           // Модель телевизора
     private int guarantee;          // Гарантия
 
     // Основной конструктор
     public TV(
             String brand,
+            String model,
             double diagonal,
             String resolution,
             String matrixType,
             int refreshRate,
             String smartSystem,
-            String model,
             int guarantee
     ) {
         this.brand = brand;
+        this.model = model;
         this.diagonal = diagonal;
         this.resolution = resolution;
         this.matrixType = matrixType;
         this.refreshRate = refreshRate;
         this.smartSystem = smartSystem;
-        this.model = model;
         this.guarantee = 1;
     }
 
     // Конструктор с минимальными параметрами
-    public TV(String samsung, double v, String s, String brand, double diagonal, String tizen, String resolution) {
+    public TV(String brand, String model,double diagonal, String resolution, String matrixType, int refreshRate, String smartSystem) {
         this( brand,
+                model,
                 diagonal,
                 resolution,
-                "IPS",
-                60,
-                "Basic OS",
-                "Standard",
+                matrixType,
+                refreshRate,
+                smartSystem,
                 1);
+
     }
+
     // Сеттеры
     public void SetBrand(String brand){
         this.brand = brand;
+    }
+
+    public void SetModel(String model){
+        this.model = model;
     }
 
     public void SetDiagonal(double diagonal){
@@ -99,9 +103,7 @@ public class TV {
         this.smartSystem = smartSystem;
     }
 
-    public void SetModel(String model){
-        this.model = model;
-    }
+
 
 
 
@@ -111,6 +113,14 @@ public class TV {
             return "Неизвестно";
         }else {
             return brand;
+        }
+    }
+
+    public String Getmodel(){
+        if (model == null){
+            return "Неизвестно";
+        }else {
+            return model;
         }
     }
 
@@ -146,14 +156,6 @@ public class TV {
         }
     }
 
-    public String Getmodel(){
-        if (model == null){
-            return "Неизвестно";
-        }else {
-            return model;
-        }
-    }
-
     public int GetQuarantee(){
         return guarantee;
 
@@ -165,14 +167,6 @@ public class TV {
                 ", \n Диагональ: " + diagonal + " дюймов, " + " \n Разрешение: " + resolution + ", \n Матрица " + matrixType + ", \n Частота обновления " + refreshRate + " ГЦ " + ", \n Система " + smartSystem + ", \n Гарантия " + guarantee + " лет ";
     }
 
-
-
-
-//
-//
-//    int guarantee
-
-
     // Статический метод для создания случайного телевизора
     public static TV createRandomTV() {
         Random rand = new Random();
@@ -181,16 +175,15 @@ public class TV {
         String[] resolutions = {"Full HD", "4K", "8K"};
         String[] matrices = {"OLED", "QLED", "IPS", "VA"};
         String[] systems = {"Tizen", "webOS", "Android TV", "Google TV"};
-        //System.out.println(Arrays.toString(brands));
 
         return new TV(
                 brands[rand.nextInt(brands.length)],
+                models[rand.nextInt(models.length)],
                 32 + rand.nextDouble() * 73, // Диагональ 32-105"
                 resolutions[rand.nextInt(resolutions.length)],
                 matrices[rand.nextInt(matrices.length)],
                 60 + rand.nextInt(18) * 10,  // Частота 60-240 Гц
-                systems[rand.nextInt(systems.length)],
-                models[rand.nextInt(models.length)]
+                systems[rand.nextInt(systems.length)]
         );
     }
 
