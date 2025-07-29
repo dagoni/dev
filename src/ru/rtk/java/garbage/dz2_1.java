@@ -1,4 +1,4 @@
-package src.ru.rtk.java;
+package src.ru.rtk.java.garbage;
 
 import java.util.Scanner;
 
