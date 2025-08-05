@@ -1,4 +1,4 @@
-package src.ru.rtk.java;
+package src.ru.rtk.java.Homework.Homework3;
 
 import java.util.Scanner;
 
