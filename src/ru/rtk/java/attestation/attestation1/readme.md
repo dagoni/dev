@@ -40,3 +40,8 @@ END
 Фа = 100
 END
 
+## Ответы(скрины):
+
+![img_1.png](img_1.png)
+
+![img.png](img.png)
