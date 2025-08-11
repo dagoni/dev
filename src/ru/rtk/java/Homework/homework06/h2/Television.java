@@ -1,7 +1,6 @@
-package src.ru.rtk.java.Homework.homework06;
+package src.ru.rtk.java.Homework.homework06.h2;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Television {
 
