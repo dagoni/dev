@@ -1,4 +1,4 @@
-package src.ru.rtk.java.Homework.homework06.h2;
+package src.ru.rtk.java.Homework.homework06.Мусорка2.h2;
 
 import java.util.ArrayList;
 import java.util.Objects;

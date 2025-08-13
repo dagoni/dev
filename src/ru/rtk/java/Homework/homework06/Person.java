@@ -1,4 +1,4 @@
-package src.ru.rtk.java.Homework.homework06.h1;
+package src.ru.rtk.java.Homework.homework06;
 
 
 import java.util.ArrayList;
@@ -36,12 +36,16 @@ class Person {
     }
 
     public void buy_groceries(Product product) {
-        if (money >= product.getPrice()) {  // Если денег достаточно
-            money -= product.getPrice();   // Вычитаем из них деньги
-            grocerybag.add(product);       // Добавляем в корзину
-            System.out.println(name + " купил " + product.getName()); // Выводим сообщение
+        int actualPrice = (product instanceof DiscountProduct)
+                ? ((DiscountProduct) product).getCurrentPrice()
+                : product.getPrice();
+
+        if (money >= actualPrice) {
+            money -= actualPrice;
+            grocerybag.add(product);
+            System.out.println(name + " купил " + product.getName());
         } else {
-            System.out.println(name + " не может позволить себе " + product.getName());  // Выводим сообщение
+            System.out.println(name + " не может позволить себе " + product.getName());
         }
     }
 

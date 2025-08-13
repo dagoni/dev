@@ -1,22 +1,31 @@
-package src.ru.rtk.java.Homework.homework06.h1;
+package src.ru.rtk.java.Homework.homework06;
 
+import java.util.regex.Pattern;
+import java.util.regex.Pattern;
 
 class Product {
-    private String name;
+    protected  String name;
     private int price;
 
     public Product(String name, int price) {
+
+
         if (name.isEmpty() || name.length() < 3) {
             System.out.println("Название продукта не может быть пустым или короче 3 символов");
             return;
+        } else if (Pattern.matches("\\d+", name)) {
+            System.out.println("Название продукта не может состоять только из цифр");
+            return;
         }
-        if (price < 0) {  // проверка на отрицательное значение цены
-            System.out.println("Цена не может быть отрицательной"); // вывод сообщения
+        if (price <= 0) {  // проверка на отрицательное значение цены
+            System.out.println("Цена не может быть нулевой или отрицательной"); // вывод сообщения
             return;
         }
 
         this.name = name;
         this.price = price;
+
+
     }
 
     public String getName() {
