@@ -15,6 +15,11 @@ class DiscountProduct extends Product {
             return;
         }
 
+//        if (price <= 0 ) {
+//            System.out.println("Цена должна быть больше 0");
+//            return;
+//        }
+
         this.discount = discount;
         this.validUntil = validUntil;
 
@@ -32,15 +37,23 @@ class DiscountProduct extends Product {
 
     // сеттеры
     public void setDiscount(int discount) {
+
         this.discount = discount;
     }
 
     public void setValidUntil(LocalDate validUntil) {
+
         this.validUntil = validUntil;
     }
 
     // метод для получения текущей цены
     public int getCurrentPrice() {
+
+        if (validUntil == null) {
+            System.out.println("Дата окончания скидки не задана");
+            return getPrice(); // Возвращаем обычную цену
+        }
+
         if (LocalDate.now().isBefore(validUntil)) {
             return (int) (getPrice() * (100 - discount) / 100);
         } else {
@@ -57,13 +70,18 @@ class DiscountProduct extends Product {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!super.equals(o)) return false;
+        if (!(o instanceof DiscountProduct)) return false;
+
         DiscountProduct that = (DiscountProduct) o;
-        return discount == that.discount && validUntil.equals(that.validUntil);
+
+        if (!super.equals(o)) return false;
+        if (discount != that.discount) return false;
+        return validUntil != null ? validUntil.equals(that.validUntil) : that.validUntil == null;
     }
 
     @Override
     public int hashCode() {
+
         return super.hashCode() ^ discount ^ validUntil.hashCode();
     }
 }
