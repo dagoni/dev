@@ -1,21 +1,34 @@
-package src.ru.rtk.java.Homework.homework06.h1;
+package src.ru.rtk.java.Homework.homework06;
 
 
 import java.util.ArrayList;
 
 class Person {
     private String name; // Имя покупателя
-    private int money;   // Сколько денег он имеет
+    private int money;   // Сколько денег у покупателя
     private ArrayList<Product> grocerybag; // Список покупок
     // Конструктор
     public Person(String name, int money) {
-        if (name.length() < 3 || name.isEmpty()) { // Проверка на пустое имя
+        if (name.length() < 3 || name.isEmpty() || name == null ) { // Проверка на пустое имя
             System.out.println("Имя не может быть пустым или короче 3 символов");
+            //System.err.println("FATAL ERROR: Имя не может быть пустым или короче 3 символов");
+            //System.exit(1); // Немедленная остановка программы с кодом ошибки
+
+
             return;
+//            throw new IllegalArgumentException(
+//                    "Имя не может быть пустым или короче 3 символов"
+//            );
         }
+
+
+
         if (money < 0) {
             System.out.println("Деньги не могут быть отрицательными");
             return;
+
+
+
         }
 
         this.name = name;
@@ -36,12 +49,31 @@ class Person {
     }
 
     public void buy_groceries(Product product) {
-        if (money >= product.getPrice()) {  // Если денег достаточно
-            money -= product.getPrice();   // Вычитаем из них деньги
-            grocerybag.add(product);       // Добавляем в корзину
-            System.out.println(name + " купил " + product.getName()); // Выводим сообщение
+
+        //System.out.println(product.getName());
+
+        if (product.getName() == null) {
+            System.out.println("Имя товара не может быть пустым. " + name + " не может купить товар ");
+            return;
+        }
+        int actualPrice; // Создаем переменную для хранения цены
+
+        // Проверяем, является ли товар товаром со скидкой
+        if (product instanceof DiscountProduct) {
+            // Если ДА - преобразуем в DiscountProduct и берем цену со скидкой
+            DiscountProduct discountProduct = (DiscountProduct) product;
+            actualPrice = discountProduct.getCurrentPrice();
         } else {
-            System.out.println(name + " не может позволить себе " + product.getName());  // Выводим сообщение
+            // Если НЕТ - берем обычную цену
+            actualPrice = product.getPrice();
+        }
+
+        if (money >= actualPrice) {
+            money -= actualPrice;
+            grocerybag.add(product);
+            System.out.println(name + " купил " + product.getName());
+        } else {
+            System.out.println(name + " не может позволить себе " + product.getName());
         }
     }
 
