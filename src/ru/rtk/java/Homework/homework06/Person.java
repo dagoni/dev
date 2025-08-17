@@ -5,17 +5,30 @@ import java.util.ArrayList;
 
 class Person {
     private String name; // Имя покупателя
-    private int money;   // Сколько денег он имеет
+    private int money;   // Сколько денег у покупателя
     private ArrayList<Product> grocerybag; // Список покупок
     // Конструктор
     public Person(String name, int money) {
-        if (name.length() < 3 || name.isEmpty()) { // Проверка на пустое имя
+        if (name.length() < 3 || name.isEmpty() || name == null ) { // Проверка на пустое имя
             System.out.println("Имя не может быть пустым или короче 3 символов");
+            //System.err.println("FATAL ERROR: Имя не может быть пустым или короче 3 символов");
+            //System.exit(1); // Немедленная остановка программы с кодом ошибки
+
+
             return;
+//            throw new IllegalArgumentException(
+//                    "Имя не может быть пустым или короче 3 символов"
+//            );
         }
+
+
+
         if (money < 0) {
             System.out.println("Деньги не могут быть отрицательными");
             return;
+
+
+
         }
 
         this.name = name;
@@ -36,9 +49,24 @@ class Person {
     }
 
     public void buy_groceries(Product product) {
-        int actualPrice = (product instanceof DiscountProduct)
-                ? ((DiscountProduct) product).getCurrentPrice()
-                : product.getPrice();
+
+        //System.out.println(product.getName());
+
+        if (product.getName() == null) {
+            System.out.println("Имя товара не может быть пустым. " + name + " не может купить товар ");
+            return;
+        }
+        int actualPrice; // Создаем переменную для хранения цены
+
+        // Проверяем, является ли товар товаром со скидкой
+        if (product instanceof DiscountProduct) {
+            // Если ДА - преобразуем в DiscountProduct и берем цену со скидкой
+            DiscountProduct discountProduct = (DiscountProduct) product;
+            actualPrice = discountProduct.getCurrentPrice();
+        } else {
+            // Если НЕТ - берем обычную цену
+            actualPrice = product.getPrice();
+        }
 
         if (money >= actualPrice) {
             money -= actualPrice;
