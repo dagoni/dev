@@ -1,4 +1,4 @@
-package src.ru.rtk.java.Homework.homework06;
+package src.ru.rtk.java.Homework.homework6;
 import java.time.LocalDate;
 
 

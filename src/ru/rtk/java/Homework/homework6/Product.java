@@ -1,6 +1,5 @@
-package src.ru.rtk.java.Homework.homework06;
+package src.ru.rtk.java.Homework.homework6;
 
-import java.util.regex.Pattern;
 import java.util.regex.Pattern;
 
 class Product {

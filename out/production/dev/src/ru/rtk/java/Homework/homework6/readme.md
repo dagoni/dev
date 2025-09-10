@@ -34,4 +34,5 @@ Product, а другой для специальных – DiscountProduct.
 Внутри кода
 
 ## Ответы(скрины):
-![img.png](img.png)
+
+![img_1.png](img_1.png)
