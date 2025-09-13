@@ -74,3 +74,8 @@ b873of Volga Black 0 673000
 
 Реализовать ввод и вывод программы в файл *.txt
 Вынести логику работы с автомобилем в папку repository: интерфейс CarsRepository и его реализацию CarsRepositoryImpl
+
+
+Реализовано:
+
+![img_1.png](img_1.png)
