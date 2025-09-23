@@ -78,3 +78,4 @@ b873of Volga Black 0 673000
 
 Реализовано:
 
+![img_1.png](img_1.png)
