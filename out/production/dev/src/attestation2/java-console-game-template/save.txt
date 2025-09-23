@@ -1,0 +1,4 @@
+player;Герой;34;7
+inventory;Key:Ржавый ключ
+room;Лес
+score;13
